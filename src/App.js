@@ -73,7 +73,8 @@ function App() {
       )}
       {selectedCity !== "" && <hr />}
       <p className="text-muted">
-        Jeśli nie wyświetlają się dane pogody to trzeba zmienić klucz
+        Jeśli nie wyświetlają się dane pogody to trzeba zmienić klucz.{" "}
+        <a href="https://openweathermap.org/api">LINK</a>
       </p>
       {/* Setting a custom apiKey */}
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

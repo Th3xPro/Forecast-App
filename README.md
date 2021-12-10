@@ -46,6 +46,9 @@ npm start
 
 ## Quick Look Inside
 
+![image](https://user-images.githubusercontent.com/42244290/145558036-b6dd9f05-b3d7-45d1-aa59-e982760698ad.png)
+
+
 ## Learn More
 
 The creation of this app was simple but also twisted with getting time date in differenet formats and I couldn't decide how I want to format it.</br>

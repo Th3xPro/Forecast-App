@@ -16,6 +16,7 @@ This React application was created to display:
 - 5 day forecast
 
 for (Poznan, London, Havana)
+*All API calls are saved after to localstorage to prevent from calling continuously.
 
 ## Technologies
 

@@ -15,8 +15,8 @@ This React application was created to display:
 - Today forecast
 - 5 day forecast
 
-for (Poznan, London, Havana)
-*All API calls are saved after to localstorage to prevent from calling continuously.
+for (Poznan, London, Havana) <br>
+```All API calls are saved after to localstorage to prevent from calling continuously.```
 
 ## Technologies
 

@@ -6,37 +6,41 @@ export default function FiveDayForecast(props) {
   const [fiveDayForecast, setFiveDayForecast] = useState([]);
   //Filtering data on fetching to get only 5 days
   const fetchFiveDayForecast = (city, apiKey) => {
-    if (city === "Poznan") {
-      const api = `http://api.openweathermap.org/data/2.5/forecast?q=Poznan&appid=${apiKey}`;
-      axios.get(api).then((response) => {
-        const output = response.data;
-        setFiveDayForecast(
-          output.list.filter((day, id) => {
+    const savedCity = JSON.parse(localStorage.getItem(city + "-5day"));
+    if (savedCity === null || savedCity === [] || savedCity === "") {
+      if (city === "Poznan") {
+        const api = `http://api.openweathermap.org/data/2.5/forecast?q=Poznan&appid=${apiKey}`;
+        axios.get(api).then((response) => {
+          const output = response.data;
+          const fiveDay = output.list.filter((day, id) => {
             return id % 8 === 0 && day;
-          })
-        );
-      });
-    } else if (city === "London") {
-      const api = `http://api.openweathermap.org/data/2.5/forecast?q=London&appid=${apiKey}`;
-      axios.get(api).then((response) => {
-        const output = response.data;
-        setFiveDayForecast(
-          output.list.filter((day, id) => {
+          });
+          setFiveDayForecast(fiveDay);
+          localStorage.setItem(city + "-5day", JSON.stringify(fiveDay));
+        });
+      } else if (city === "London") {
+        const api = `http://api.openweathermap.org/data/2.5/forecast?q=London&appid=${apiKey}`;
+        axios.get(api).then((response) => {
+          const output = response.data;
+          const fiveDay = output.list.filter((day, id) => {
             return id % 8 === 0 && day;
-          })
-        );
-      });
-    } else if (city === "Havana") {
-      const api = `http://api.openweathermap.org/data/2.5/forecast?q=Havana&appid=${apiKey}`;
-      axios.get(api).then((response) => {
-        const output = response.data;
-
-        setFiveDayForecast(
-          output.list.filter((day, id) => {
+          });
+          setFiveDayForecast(fiveDay);
+          localStorage.setItem(city + "-5day", JSON.stringify(fiveDay));
+        });
+      } else if (city === "Havana") {
+        const api = `http://api.openweathermap.org/data/2.5/forecast?q=Havana&appid=${apiKey}`;
+        axios.get(api).then((response) => {
+          const output = response.data;
+          const fiveDay = output.list.filter((day, id) => {
             return id % 8 === 0 && day;
-          })
-        );
-      });
+          });
+          setFiveDayForecast(fiveDay);
+          localStorage.setItem(city + "-5day", JSON.stringify(fiveDay));
+        });
+      }
+    } else {
+      setFiveDayForecast(savedCity);
     }
   };
   useEffect(() => {

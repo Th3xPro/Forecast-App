@@ -5,24 +5,32 @@ export default function LocalTime(props) {
   const [localTimeCity, setLocalTimeCity] = useState("");
   //It could be done in list of counteries of specific region |CET|UTC|EST
   const fetchLocalTime = (city) => {
-    if (city === "Poznan") {
-      const api = "http://worldclockapi.com/api/json/cet/now";
-      axios.get(api).then((response) => {
-        const output = response.data;
-        setLocalTimeCity(output);
-      });
-    } else if (city === "London") {
-      const api = "http://worldclockapi.com/api/json/utc/now";
-      axios.get(api).then((response) => {
-        const output = response.data;
-        setLocalTimeCity(output);
-      });
-    } else if (city === "Havana") {
-      const api = "http://worldclockapi.com/api/json/est/now";
-      axios.get(api).then((response) => {
-        const output = response.data;
-        setLocalTimeCity(output);
-      });
+    const savedTime = JSON.parse(localStorage.getItem(city + "-Time"));
+    if (savedTime === null || savedTime === [] || savedTime === "") {
+      if (city === "Poznan") {
+        const api = "http://worldclockapi.com/api/json/cet/now";
+        axios.get(api).then((response) => {
+          const output = response.data;
+          setLocalTimeCity(output);
+          localStorage.setItem(city + "-Time", JSON.stringify(output));
+        });
+      } else if (city === "London") {
+        const api = "http://worldclockapi.com/api/json/utc/now";
+        axios.get(api).then((response) => {
+          const output = response.data;
+          setLocalTimeCity(output);
+          localStorage.setItem(city + "-Time", JSON.stringify(output));
+        });
+      } else if (city === "Havana") {
+        const api = "http://worldclockapi.com/api/json/est/now";
+        axios.get(api).then((response) => {
+          const output = response.data;
+          setLocalTimeCity(output);
+          localStorage.setItem(city + "-Time", JSON.stringify(output));
+        });
+      }
+    } else {
+      setLocalTimeCity(savedTime);
     }
   };
 

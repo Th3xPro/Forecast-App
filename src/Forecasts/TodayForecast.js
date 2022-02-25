@@ -8,26 +8,41 @@ export default function TodayForecast(props) {
   //State to use it to rotate icon to display correct wind direction
   const [deg, setDeg] = useState(0);
   const fetchTodayForecast = (city, apiKey) => {
-    if (city === "Poznan") {
-      const api = `http://api.openweathermap.org/data/2.5/weather?q=Poznan&appid=${apiKey}`;
-      axios.get(api).then((response) => {
-        const output = response.data;
-        setTodayForecast(output);
-      });
-    } else if (city === "London") {
-      const api = `http://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}`;
-      axios.get(api).then((response) => {
-        const output = response.data;
-        setTodayForecast(output);
-      });
-    } else if (city === "Havana") {
-      const api = `http://api.openweathermap.org/data/2.5/weather?q=Havana&appid=${apiKey}`;
-      axios.get(api).then((response) => {
-        const output = response.data;
-        setTodayForecast(output);
-      });
+    const savedTodayForecast = JSON.parse(
+      localStorage.getItem(city + "-TodayForecast")
+    );
+    if (
+      savedTodayForecast === null ||
+      savedTodayForecast === [] ||
+      savedTodayForecast === ""
+    ) {
+      if (city === "Poznan") {
+        const api = `http://api.openweathermap.org/data/2.5/weather?q=Poznan&appid=${apiKey}`;
+        axios.get(api).then((response) => {
+          const output = response.data;
+          setTodayForecast(output);
+          localStorage.setItem(city + "-TodayForecast", JSON.stringify(output));
+        });
+      } else if (city === "London") {
+        const api = `http://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}`;
+        axios.get(api).then((response) => {
+          const output = response.data;
+          setTodayForecast(output);
+          localStorage.setItem(city + "-TodayForecast", JSON.stringify(output));
+        });
+      } else if (city === "Havana") {
+        const api = `http://api.openweathermap.org/data/2.5/weather?q=Havana&appid=${apiKey}`;
+        axios.get(api).then((response) => {
+          const output = response.data;
+          setTodayForecast(output);
+          localStorage.setItem(city + "-TodayForecast", JSON.stringify(output));
+        });
+      }
+    } else {
+      setTodayForecast(savedTodayForecast);
     }
   };
+
   useEffect(() => {
     fetchTodayForecast(props.cityName, props.apiKey);
     if (todayForecast.wind !== undefined) {

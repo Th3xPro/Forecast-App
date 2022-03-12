@@ -9,7 +9,6 @@ import LocalTime from "./Forecasts/LocalTime";
 import SunTime from "./Forecasts/SunTime";
 import TodayForecast from "./Forecasts/TodayForecast";
 import FiveDayForecast from "./Forecasts/FiveDayForecast";
-import App from "./App";
 
 describe("LocalTime test", () => {
   it("should render local time for Poznan", async () => {

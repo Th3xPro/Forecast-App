@@ -1,0 +1,75 @@
+{
+    "data": {
+        "coord": {
+            "lon": 16.9299,
+            "lat": 52.4069
+        },
+        "weather": [
+            {
+                "id": 800,
+                "main": "Clear",
+                "description": "clear sky",
+                "icon": "01d"
+            }
+        ],
+        "base": "stations",
+        "main": {
+            "temp": 282.03,
+            "feels_like": 278.91,
+            "temp_min": 282.02,
+            "temp_max": 282.27,
+            "pressure": 1029,
+            "humidity": 28
+        },
+        "visibility": 10000,
+        "wind": {
+            "speed": 6.17,
+            "deg": 130
+        },
+        "clouds": {
+            "all": 0
+        },
+        "dt": 1647097073,
+        "sys": {
+            "type": 2,
+            "id": 19661,
+            "country": "PL",
+            "sunrise": 1647062052,
+            "sunset": 1647103810
+        },
+        "timezone": 3600,
+        "id": 3088171,
+        "name": "Poznań",
+        "cod": 200
+    },
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+        "content-length": "469",
+        "content-type": "application/json; charset=utf-8"
+    },
+    "config": {
+        "transitional": {
+            "silentJSONParsing": true,
+            "forcedJSONParsing": true,
+            "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "headers": {
+            "Accept": "application/json, text/plain, */*"
+        },
+        "method": "get",
+        "url": "http://api.openweathermap.org/data/2.5/weather?q=Poznan&appid=b7fe3118feac2d015b410298e29ef86a"
+    },
+    "request": {}
+}

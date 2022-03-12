@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default function LocalTime(props) {
   const [localTimeCity, setLocalTimeCity] = useState("");
+
   //It could be done in list of counteries of specific region |CET|UTC|EST
   const fetchLocalTime = (city) => {
     const savedTime = JSON.parse(localStorage.getItem(city + "-Time"));
@@ -30,17 +31,27 @@ export default function LocalTime(props) {
         });
       }
     } else {
-      setLocalTimeCity(savedTime);
+      const todayTime = new Date().getTime();
+      const difference = Date.parse(savedTime.currentDateTime) - todayTime;
+      if (difference <= -400000) {
+        localStorage.removeItem(city + "-Time");
+        localStorage.removeItem(city + "-SunTime");
+        localStorage.removeItem(city + "-TodayForecast");
+        localStorage.removeItem(city + "-5day");
+        fetchLocalTime(city);
+      } else {
+        setLocalTimeCity(savedTime);
+      }
     }
   };
 
   useEffect(() => {
     fetchLocalTime(props.cityName);
   }, [props.cityName]);
-  //gethours and getminuts maybe
+
   return (
     <div>
-      <h6>
+      <h6 id="local-time">
         {/* Cutting string rather than "new Date" because of automatic conv to Local Time */}
         {localTimeCity.currentDateTime !== undefined &&
           localTimeCity.currentDateTime.toString().substring(11, 16)}

@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 export default function SunTime(props) {
   const [localSun, setLocalSun] = useState({});
+
   //This api works only on lat and lng so they had to be predefined
   const fetchSunset = (city) => {
     const savedSunTime = JSON.parse(localStorage.getItem(city + "-SunTime"));
@@ -45,17 +46,21 @@ export default function SunTime(props) {
       setLocalSun(savedSunTime);
     }
   };
+
   useEffect(() => {
     fetchSunset(props.cityName);
   }, [props.cityName]);
+
   return (
     <div>
       <Row>
         <Col>
-          <h6>{localSun !== undefined && localSun.sunrise}</h6>
+          <h6 id="sunrise-time">
+            {localSun !== undefined && localSun.sunrise}
+          </h6>
         </Col>
         <Col>
-          <h6>{localSun !== undefined && localSun.sunset}</h6>
+          <h6 id="sunset-time">{localSun !== undefined && localSun.sunset}</h6>
         </Col>
       </Row>
     </div>

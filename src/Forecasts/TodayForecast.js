@@ -5,12 +5,14 @@ import { FaLocationArrow } from "react-icons/fa";
 
 export default function TodayForecast(props) {
   const [todayForecast, setTodayForecast] = useState("");
-  //State to use it to rotate icon to display correct wind direction
   const [deg, setDeg] = useState(0);
+
+  //State to use it to rotate icon to display correct wind direction
   const fetchTodayForecast = (city, apiKey) => {
     const savedTodayForecast = JSON.parse(
       localStorage.getItem(city + "-TodayForecast")
     );
+
     if (
       savedTodayForecast === null ||
       savedTodayForecast === [] ||
@@ -48,7 +50,7 @@ export default function TodayForecast(props) {
     if (todayForecast.wind !== undefined) {
       setDeg(-parseInt(todayForecast.wind.deg) + "deg");
     }
-  }, [props.cityName, todayForecast.wind, props.apiKey]);
+  }, [props.cityName, props.apiKey]);
   return (
     <div>
       <Row>
@@ -60,7 +62,7 @@ export default function TodayForecast(props) {
               width="50px"
             />
           )}
-          <h3 className="pt-2">
+          <h3 className="pt-2" id="today-forecast-temp">
             {todayForecast.main !== undefined &&
               parseInt(todayForecast.main.temp - 273.15) + " °C"}
           </h3>
@@ -72,7 +74,7 @@ export default function TodayForecast(props) {
               <FaLocationArrow style={{ transform: `rotate(${deg})` }} />
             )}
           </h4>
-          <h4 className="pt-2">
+          <h4 className="pt-2" id="today-forecast-wind">
             {todayForecast.wind !== undefined &&
               todayForecast.wind.speed + "m/s S"}
           </h4>

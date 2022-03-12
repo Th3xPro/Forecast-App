@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default function FiveDayForecast(props) {
   const [fiveDayForecast, setFiveDayForecast] = useState([]);
+
   //Filtering data on fetching to get only 5 days
   const fetchFiveDayForecast = (city, apiKey) => {
     const savedCity = JSON.parse(localStorage.getItem(city + "-5day"));
@@ -43,18 +44,17 @@ export default function FiveDayForecast(props) {
       setFiveDayForecast(savedCity);
     }
   };
+
   useEffect(() => {
     fetchFiveDayForecast(props.cityName, props.apiKey);
   }, [props.cityName, props.apiKey]);
+
   return (
     <div>
       {fiveDayForecast.length !== 0 &&
         fiveDayForecast.map((day, id) => (
-          <Row>
-            <Col
-              className="col-6 text-center justify-content-center mb-3"
-              key={id}
-            >
+          <Row key={id}>
+            <Col className="col-6 text-center justify-content-center mb-3">
               <h6 className="mt-2 pt-1 float-left">
                 {/* Using "new Date" to display in correct format acutal date */}
                 {new Date(day.dt_txt).toLocaleDateString()}

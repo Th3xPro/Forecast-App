@@ -42,6 +42,7 @@ describe("TodayForecast test", () => {
     });
   });
 });
+
 describe("FiveDayForecast test", () => {
   it("should render today forecast for Poznan", async () => {
     const getById = queryByAttribute.bind(null, "id");
